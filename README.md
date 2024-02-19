@@ -52,9 +52,7 @@ const data = await response.json();
 |             |        |
 | ----------- | ------ |
 | title       | string |
-| ---         | ------ |
 | description | string |
-| ---         | ------ |
 | imageSource | string |
 
 Saves a image as base64 in the database
