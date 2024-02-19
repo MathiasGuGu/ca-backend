@@ -75,3 +75,16 @@ let post = async () => {
 ```
 
 ## /users/:id (PUT)
+
+Lets the user change their username
+
+```tsx
+const response = await fetch(`*/users/${params.id}`, {
+  method: "PUT",
+  body: JSON.stringify({
+    username: usernameString,
+  }),
+});
+
+const data = await response.json();
+```
