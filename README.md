@@ -3,84 +3,74 @@
 
 </aside>
 
-# Account related routes
-
-## /account/create/
-
-<aside>
-❓ Create a new account
-
-</aside>
-
-| VARIABLE | TYPE   |
-| -------- | ------ |
-| Username | String |
-| Email    | String |
-| Password | String |
-
-```tsx
-
-let body = {
-	username: "username" // Must be unique!
-	email: "email" // Must be unique!
-	password: "password" // Must be strong!
-}
-
-const url = "*/account/create"
-
-let res = await fetch(URL, {
-	method: POST,
-	body: JSON.stringify(body),
-})
-```
-
-## /account/<userId>
-
-<aside>
-❓ returns the user data corresponding to userid
-
-</aside>
-
-| VARIABLE | TYPE   |
-| -------- | ------ |
-| UserId   | String |
-
-```tsx
-const url = "*/account/";
-const uid = "someUserId";
-let res = await fetch(URL + uid, {
-  method: GET,
-});
-```
-
 # Image related routes
 
 ## /images/all
+
+returns all images in database
 
 |     |     |
 | --- | --- |
 
 ```tsx
-let res = await fetch(URL);
+let res = await fetch("*/images/all");
 let data = await res.json();
 ```
+
+## /images/:id (GET)
+
+shows the image with given id
 
 |     |        |
 | --- | ------ |
-| id  | number |
-
-## /images/:id
+| id  | string |
 
 ```tsx
-let res = await fetch(URL);
-let data = await res.json();
+const response = await fetch(`*/images/${id}`);
+
+const data = await response.json();
 ```
 
-## /images/:id
+## /images/:id (DELETE)
+
+deletes the selected image if owned by the logged in user
+
+|     |        |
+| --- | ------ |
+| id  | string |
 
 ```tsx
-let res = await fetch(URL);
-let data = await res.json();
+const response = await fetch(`*/images/${params.id}`, {
+  method: "DELETE",
+});
+
+const data = await response.json();
 ```
 
-## /images/save
+## /images/save (POST)
+
+|             |        |
+| ----------- | ------ |
+| title       | string |
+| ---         | ------ |
+| description | string |
+| ---         | ------ |
+| imageSource | string |
+
+Saves a image as base64 in the database
+
+```tsx
+let post = async () => {
+  const response = await fetch("*/images/save", {
+    method: "POST",
+    body: JSON.stringify({
+      title: title,
+      description: description,
+      imageSource: img,
+    }),
+  });
+  const data = await response.json();
+};
+```
+
+## /users/:id (PUT)
