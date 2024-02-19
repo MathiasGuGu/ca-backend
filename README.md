@@ -1,9 +1,12 @@
-<aside>
-👤 * is a placeholder for the start of the url
+# PictureIt
 
-</aside>
+PictureIt is a platform that lets users upload images.
 
-# Image related routes
+## database
+
+PictureIt uses supabase to store all its data.
+Images that are saved are stored as base64 strings.
+All user authentication is managed by supabase and data is stored securly.
 
 ## /images/all
 
